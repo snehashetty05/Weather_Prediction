@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <title>Weather Forecasting</title>
+ 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    * {
+
+      margin: 0;
+      padding: 0;
+      font-family: Open Sans;
+
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0 70px;
+      background-image: linear-gradient(to right, #8e69c5, #6202EE);
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 4;
+      height: 68px;
+    }
+
+    .logo {
+      position: absolute;
+      left: 13px;
+      top: 9px;
+
+
+    }
+
+    .logo img {
+      border-radius: 50%;
+    }
+
+    #footer img {
+      border-radius: 50%;
+    }
+
+    .nav {
+      float: right;
+    }
+
+    .nav ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .nav ul li {
+      list-style: none;
+      position: relative;
+    }
+
+    .nav ul li a {
+      font-size: 1.3rem;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 68px;
+      padding: 0 30px;
+      color: #FFFFFF;
+      text-decoration: none;
+      display: block;
+    }
+
+    .nav ul li a:hover {
+      color: #FFFFFF;
+      background: #c4c4c4;
+    }
+
+    .nav ul ul {
+      display: inline-block;
+      background: #6202EE;
+      padding: 0px;
+      width: 260px;
+      position: absolute;
+      top: 70px;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .nav ul li:hover>ul {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav ul ul li {
+      position: relative;
+      margin: 0px;
+    }
+
+    .project-name {
+      color: #322646;
+      margin-top: 130px;
+      text-align: center;
+      font-family: Open Sans;
+      font-size: 2.3rem;
+    }
+
+    .banner {
+      height: 80vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/index-background.png);
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .banner h1 {
+      padding-top: 170px;
+      font-size: 3.6rem;
+      letter-spacing: 6px;
+      font-weight: 600;
+      text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .banner p {
+      font-size: 1.9rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .info-container {
+      position: absolute;
+      top: 135%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      padding: 30px;
+      background-image: linear-gradient(to right, #8e69c5, #6202EE);
+      box-sizing: border-box;
+      border-radius: 10px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .circle {
+      width: 280px;
+      height: 280px;
+      background: url(../images/index-about-circle1.jpg);
+      border-radius: 50%;
+      float: left;
+      shape-outside: circle();
+      margin: 70px 30px 30px 0;
+    }
+
+    .circle:hover {
+      background: url(../images/index-about-circle2.png);
+    }
+
+    .info-container p {
+      margin: 0;
+      padding: 0;
+      text-align: justify;
+      color: white;
+      line-height: 22px;
+    }
+
+    .info-container h1 {
+      margin: 0 0 20px;
+      color: white;
+      padding: 0;
+      font-size: 2rem;
+    }
+
+    #footer {
+      margin-top: 60%;
+      background: #f8f9fd;
+      padding: 20px 10px 8px;
+    }
+
+    .footer-image {
+      margin: 30px 0;
+    }
+
+    #footer p {
+      color: #333;
+    }
+
+    #footer a img {
+      width: 300px;
+    }
+
+    .finalgraph img {
+      height: 500px;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .banner h1 {
+        font-size: 2.2rem;
+      }
+
+      .banner p {
+        font-size: 1.4rem;
+      }
+
+      .info-container {
+        top: 140%;
+        width: 500px;
+      }
+
+      .info-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .info-container p {
+        font-size: 1.0rem;
+      }
+
+      #footer {
+        margin-top: 110%;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      .banner h1 {
+        font-size: 2.0rem;
+      }
+
+      .banner p {
+        font-size: 1.4rem;
+      }
+
+      .circle {
+        width: 220px;
+        height: 220px;
+
+      }
+
+      .info-container {
+        top: 160%;
+        width: 350px;
+      }
+
+      .info-container h1 {
+        font-size: 1.2rem;
+      }
+
+      .info-container p {
+        font-size: 0.9rem;
+      }
+
+      #footer {
+        margin-top: 200%;
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      .banner h1 {
+        font-size: 2.0rem;
+      }
+
+      .banner p {
+        font-size: 1.4rem;
+      }
+
+      .circle {
+        width: 220px;
+        height: 220px;
+
+      }
+
+      .info-container {
+        top: 160%;
+        width: 310px;
+      }
+
+      .info-container h1 {
+        font-size: 1.2rem;
+      }
+
+      .info-container p {
+        font-size: 0.9rem;
+      }
+
+      #footer {
+        margin-top: 270%;
+      }
+    }
+
+    .dash-banner {
+      height: 80vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/dashboard_back.jpg);
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .dash-banner h1 {
+      padding-top: 170px;
+      font-size: 2.1rem;
+      letter-spacing: 6px;
+      font-weight: 600;
+      text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      color: yellow;
+    }
+
+
+    .info-container1 {
+      position: absolute;
+      top: 135%;
+      left: 25%;
+      transform: translate(-50%, -50%);
+      width: 290px;
+      padding: 20px;
+      background-image: linear-gradient(to right, #8e69c5, #6202EE);
+      box-sizing: border-box;
+      border-radius: 10px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-container2 {
+      position: absolute;
+      top: 135%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 290px;
+      padding: 20px;
+      background-image: linear-gradient(to right, #8e69c5, #6202EE);
+      box-sizing: border-box;
+      border-radius: 10px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-container3 {
+      position: absolute;
+      top: 135%;
+      left: 75%;
+      transform: translate(-50%, -50%);
+      width: 290px;
+      padding: 20px;
+      background-image: linear-gradient(to right, #8e69c5, #6202EE);
+      box-sizing: border-box;
+      border-radius: 10px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-info-dashboard h1 {
+      font-size: 1.3rem;
+      color: orange;
+      font-weight: bold;
+    }
+
+    .project-info-dashboard p {
+      font-size: 1.4rem;
+    }
+
+    #project-team {
+      margin-top: 50%;
+      padding: 100px 0;
+
+    }
+
+    #project-team h3::before {
+      content: '';
+      background-image: linear-gradient(to right, #800080, #4B0082);
+      width: 50px;
+      height: 30px;
+      position: absolute;
+      z-index: -10;
+      margin-top: -15px;
+      border-top-left-radius: 70px;
+      border-bottom-right-radius: 90px;
+    }
+
+    #project-team h3 {
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .stats-box {
+      padding: 30px;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 2px 40px 0 rgba(110, 130, 208, .18);
+    }
+
+    .stats-box p {
+      font-size: 18px;
+      color: #6202EE;
+      font-weight: bold;
+    }
+
+    #footer-dash {
+      margin-top: 10px;
+      background: #f8f9fd;
+      padding: 20px 10px 8px;
+    }
+
+    #footer-dash p {
+      color: #333;
+    }
+
+    #footer-dash a img {
+      width: 300px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      .info-container1 {
+
+        top: 135%;
+        left: 20%;
+        width: 290px;
+        padding: 20px;
+
+      }
+
+      .info-container2 {
+        top: 135%;
+        left: 50%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .info-container3 {
+        top: 135%;
+        left: 80%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .project-info-dashboard h1 {
+        font-size: 1.5rem;
+
+      }
+
+      .project-info-dashboard p {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media screen and (max-width: 1100px) {
+      .info-container1 {
+
+        top: 135%;
+        left: 50%;
+        width: 290px;
+        padding: 20px;
+
+      }
+
+      .info-container2 {
+        top: 210%;
+        left: 50%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .info-container3 {
+        top: 285%;
+        left: 50%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .project-info-dashboard h1 {
+        font-size: 1.5rem;
+
+      }
+
+      .project-info-dashboard p {
+        font-size: 1.1rem;
+      }
+
+      #project-team {
+        margin-top: 170%;
+        padding: 100px 0;
+
+      }
+
+    }
+
+    @media screen and (max-width: 899px) {
+      .info-container1 {
+
+        top: 135%;
+        left: 50%;
+        width: 290px;
+        padding: 20px;
+
+      }
+
+      .info-container2 {
+        top: 210%;
+        left: 50%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .info-container3 {
+        top: 285%;
+        left: 50%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .project-info-dashboard h1 {
+        font-size: 1.5rem;
+
+      }
+
+      .project-info-dashboard p {
+        font-size: 1.1rem;
+      }
+
+      #project-team {
+        margin-top: 190%;
+        padding: 100px 0;
+
+      }
+
+    }
+
+    @media screen and (max-width: 500px) {
+      .info-container1 {
+
+        top: 135%;
+        left: 50%;
+        width: 290px;
+        padding: 20px;
+
+      }
+
+      .info-container2 {
+        top: 210%;
+        left: 50%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .info-container3 {
+        top: 285%;
+        left: 50%;
+
+        width: 290px;
+        padding: 20px;
+      }
+
+      .project-info-dashboard h1 {
+        font-size: 1.5rem;
+
+      }
+
+      .project-info-dashboard p {
+        font-size: 1.1rem;
+      }
+
+      #project-team {
+        margin-top: 420%;
+        padding: 100px 0;
+
+      }
+    }
+
+
+    input {
+      width: 60%;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 06px 06px #4b84c5;
+
+    }
+    
+    .dash-banner-weather{
+    height:80vh;
+	background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt15WU0SbpySxBe69qUpo2rRbHmZpLBzK97A&usqp=CAU');
+	background-size:cover;
+	background-position:center;
+	color:white;
+ 
+}
+
+    label {
+      font-style: normal;
+      font-family: sans-serif;
+    }
+
+    input {
+      width: 140px;
+      height: 40px;
+    }
+
+    .form-section {
+      margin-top: 120px;
+    }
+
+    .image {
+      height: 20px;
+      width: 20px;
+      margin-top: 80px;
+      margin-right: 100px;
+    }
+
+    .image1 {
+      height: 20px;
+      width: 20px;
+      margin-top: 80px;
+      margin-right: 500px;
+    }
+
+    .image2 {
+      height: 20px;
+      width: 20px;
+      margin-top: -35px;
+      margin-right: -100px;
+    }
+
+    .data {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <div class="main-nav">
+      
+      <div class="nav">
+        <ul>
+          <li class="active"><a>Algorithm</a>
+            <ul>
+              <li><a href="https://weather-care-5618a.web.app/kmeans.html">Incremental K-means</a></li>
+              <li><a href="https://weather-care-5618a.web.app/hierarchical.html">Hierachical </a></li>
+              <li><a href="https://weather-care-5618a.web.app/dbscan.html">DBSCAN </a></li>
+              <li><a href="https://weather-care-5618a.web.app/kmedoid.html">K-medoids </a></li>
+            </ul>
+          </li>
+
+          <li class="active"><a>Analysis</a>
+            <ul>
+              <li><a href="https://weather-care-5618a.web.app/record-wise-analysis.html">Record-Wise Analysis</a></li>
+              <li><a href="https://weather-care-5618a.web.app/Analysis.html">Final Analysis</a></li>
+            </ul>
+          </li>
+          <li class="active"><a>Weather forecasting</a>
+            <ul>
+              <li><a href="dates-wise.html">Future Prediction</a></li>
+              <li><a href="year-wise.html">Past Year-Wise</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+
+  </header>
+  <div>
+    <form action="/result" method="post">
+
+      <div class="dash-banner-weather">
+        <marquee style="margin-top: 80px;color:yellow; font-size: 20px;">You can predict the weather for coming 3
+          Days</marquee>
+
+
+        <center> <label>Enter the Date:</label>
+          <input type="text" name="Date" placeholder="Enter the date" format="dd/mm/yyyy" required="required" step="0.1"
+            min="30.0" max="80.0" />
+        </center>
+
+        <br>
+        <br>
+
+        <center><input type="submit" name="submit" value="Predict">
+
+        </center>
+        <br>
+
+        <center><input type="submit" name="submit" value="Cluster">
+
+        </center>
+      </div>
+
+  </div>
+
+
+  </form>
+</body>
+<br>
+<br>
+<center>
+  <h1>{{prediction}}</h1>
+
+
+</center>
+
+</html>
